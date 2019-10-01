@@ -1,0 +1,36 @@
+# Compose file for EBSI Node Besu
+version: "3.7"
+
+# Define the services composing the EBSI Node
+services:
+
+  # The proxy server for access from external applications
+  # We use the openresty variant of nginx
+  openresty:
+    build: ./openresty
+
+    # Map external host configuration files to the Docker internal file system
+    volumes:
+      - "./openresty/nginxconf:/usr/local/openresty/nginx/conf"
+
+    # ATTENTION! These are the ports which should be open to the external world
+    # Just open what is strictly necessary
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+      - "22000:22000"
+
+  # The CEF Context Broker NGSI-LD API
+  # It requires a mongoDB backend, which could be used for other purposes,
+  # but we define here for exclusive usage of the CEF CB
+  cefcb:
+    image: fiware/orion-ld
+    ports:
+      - "1026:1026"
+    command: -dbhost cefmongo
+
+  # The mongoDb database backend exclusive for CEF CB
+  cefmongo:
+    image: mongo:3.6
+    command: --nojournal
+
