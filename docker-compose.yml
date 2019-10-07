@@ -1,5 +1,5 @@
 # Compose file for EBSI Node Besu
-version: "3.7"
+version: "3.3"
 
 # Define the services composing the EBSI Node
 services:
