@@ -48,5 +48,5 @@ services:
     # The mongodb container will create and use the database file in ./mongo/datadir
     volumes:
       - "./mongo/datadir:/data/db"
-    command: --nojournal
+    command: --config ./mongo/config/mongod.conf
 
