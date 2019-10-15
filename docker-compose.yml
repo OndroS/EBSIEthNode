@@ -47,6 +47,7 @@ services:
     image: mongo:3.6
     # The mongodb container will create and use the database file in ./mongo/datadir
     volumes:
+      - "./mongo/config/cefmongo.conf:/etc/mongo.conf"
       - "./mongo/datadir:/data/db"
-    command: --config ./mongo/config/mongod.conf
+    command: --config /etc/mongo.conf
 
