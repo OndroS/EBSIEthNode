@@ -4,8 +4,21 @@ version: "3.3"
 # Define the services composing the EBSI Node
 services:
 
+  besuregular:
+    build: ./besuregular
+    volumes:
+      - "./besuregular/besu:/root/besu"
+    ports:
+      # Export the P2P port. This will be the only port exposed to the external world
+      # directly by the Besu container. All other acesses will be via the Nginx container
+      - "21000:21000"
+    # Specify the configuration file to use
+    # Mapped to the host file: ./besuregular/besu/config/config.toml
+    command: ["--config-file=/root/besu/config/config.toml"]
+    container_name: besur
+
   # The proxy server for access from external applications
-  # We use the openresty variant of nginx
+  # We use the openresty variant of nginx, which has some interesting components already packaged
   openresty:
     build: ./openresty
 
@@ -32,5 +45,8 @@ services:
   # The mongoDb database backend exclusive for CEF CB
   cefmongo:
     image: mongo:3.6
+    # The mongodb container will create and use the database file in ./mongo/datadir
+    volumes:
+      - "./mongo/datadir:/data/db"
     command: --nojournal
 

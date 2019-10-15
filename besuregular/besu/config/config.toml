@@ -1,0 +1,60 @@
+# Config file for Besu as a Regular node in EBSI network as Docker container
+
+# The EBSI network-id. I have chosen an arbitrary ID
+network-id=98765
+
+# Bootnodes. For the moment, specified statically. Should refresh on each start
+bootnodes=[
+"enode://ec816cd01c4b4afc8b7e75b823817bd0b36d1672a42839544a57a312a5c04ab12a3d96a3957f2638a3fee52d10203e6d3351a48b245caea9469f020007fa2d18@54.72.163.31:21000",
+"enode://623d6f2228378358c0bcae8e2087b5bd6207c4b9a048cd2d9878e4bed61e6af67a3ee30ab4692d226b3280211f4d038c818ccf4253a11cd452db8a6612889022@51.83.79.100:21000"
+]
+
+# The data-dir path. Has to be mounted externally to the container
+data-path="/root/ebsi/data"
+
+# Only connect to the boot nodes
+discovery-enabled=false
+
+# Path to the custom genesis file
+genesis-file="/root/ebsi/config/genesis.json" 
+
+# Allow all hosts to access JSON-RPC API, as long as they are in the same Docker cluster.
+# Access restrictions from outside EBSI node will be enforced by nginx proxy
+host-whitelist=["*"]
+
+# Private key file of the node
+node-private-key-file="/root/ebsi/config/nodekey"
+
+# The P2P network configuration
+p2p-enabled=true
+# The following IP should be the external IP of the EBSI node as seen externally
+p2p-host="15.236.0.91"
+p2p-port=21000
+max-peers=25
+
+nat-method="upnp"
+
+# Temporarily use the permissions file mechanism, to be changed to Smart Contract permissions
+permissions-nodes-config-file-enabled=true
+permissions-nodes-config-file="/root/ebsi/config/permissions_config.toml"
+
+# For the moment disable private transactions (Orion).
+privacy-enabled=false
+
+# JSON-RPC over HTTP configuration
+rpc-http-enabled=true
+rpc-http-host="0.0.0.0"
+rpc-http-port=22000
+rpc-http-api=["ADMIN","ETH","NET","WEB3","IBFT","PERM","DEBUG","MINER","EEA","PRIV","TXPOOL"]
+
+# JSON-RPC over Websockets configuration
+rpc-ws-enabled=true
+rpc-ws-host="0.0.0.0"
+rpc-ws-port=22001
+rpc-ws-api=["ADMIN","ETH","NET","WEB3","IBFT","PERM","DEBUG","MINER","EEA","PRIV","TXPOOL"]
+
+# Logging level. Highly verbose for the moment
+logging="DEBUG"
+
+# Use the FULL syncmode, to store the full blockchain
+sync-mode="FULL"
