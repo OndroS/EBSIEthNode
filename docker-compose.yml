@@ -4,10 +4,19 @@ version: "3.3"
 # Define the services composing the EBSI Node
 services:
 
-  besuregular:
-    build: ./besuregular
+  # Plain Besu binary for network definitions
+  besuplain:
+    build: ./besuplain
+    image: besuplain:latest
+#    volumes:
+#      - "./ebsi-core-net:/root/ebsi-core-net"
+#      - "./net-definitions:/root/net-definitions"
+    container_name: besuplain
+
+  besu:
+    build: ./besu
     volumes:
-      - "./besuregular/besu:/root/besu"
+      - "./besu:/root/besu"
     ports:
       # Export the P2P port. This will be the only port exposed to the external world
       # directly by the Besu container. All other acesses will be via the Nginx container
@@ -15,16 +24,15 @@ services:
     # Specify the configuration file to use
     # Mapped to the host file: ./besuregular/besu/config/config.toml
     command: ["--config-file=/root/besu/config/config.toml"]
-    container_name: besur
 
   # The proxy server for access from external applications
   # We use the openresty variant of nginx, which has some interesting components already packaged
-  openresty:
-    build: ./openresty
+  proxy:
+    build: ./proxy
 
     # Map external host configuration files to the Docker internal file system
     volumes:
-      - "./openresty/nginxconf:/usr/local/openresty/nginx/conf"
+      - "./proxy/config:/usr/local/openresty/nginx/conf"
 
     # ATTENTION! These are the ports which should be open to the external world
     # Just open what is strictly necessary
@@ -48,6 +56,6 @@ services:
     # The mongodb container will create and use the database file in ./mongo/datadir
     volumes:
       - "./mongo/config/cefmongo.conf:/etc/mongo.conf"
-      - "./mongo/datadir:/data/db"
+#      - "./mongo/datadir:/data/db"
     command: --config /etc/mongo.conf
 

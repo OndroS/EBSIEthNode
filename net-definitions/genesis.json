@@ -1,0 +1,19 @@
+{
+  "config" : {
+    "chainId" : 666666,
+    "constantinoplefixblock" : 0,
+    "contractSizeLimit" : 2147483647,
+    "ibft2" : {
+      "blockperiodseconds" : 2,
+      "epochlength" : 30000,
+      "requesttimeoutseconds" : 10
+    }
+  },
+  "nonce" : "0x0",
+  "timestamp" : "0x58ee40ba",
+  "gasLimit" : "0x1fffffffffffff",
+  "difficulty" : "0x1",
+  "mixHash" : "0x63746963616c2062797a616e74696e65206661756c7420746f6c6572616e6365",
+  "coinbase" : "0x0000000000000000000000000000000000000000",
+  "extraData" : "0xf87ea00000000000000000000000000000000000000000000000000000000000000000f85494f34434a4f515e8d2d644e94b5edc13a924a0b407948b687a814009b2eb1ce4b011c4cf83b752085fc49407c91ca0923bed2ec912e03b851f10fd8afbdb23941bb767cd42ce3d0022a2bf3b3056ed41442973cb808400000000c0"
+}
