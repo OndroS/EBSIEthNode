@@ -57,8 +57,8 @@ We have to create an entry in the `.config.toml`configuration file to define the
 bootnodes=[
     "enode://pubkey1@ip1:port1",
     "enode://pubkey2@ip2:port2",
-    enode://pubkey3@ip3:port3,
-    enode://pubkey4@ip4:port4
+    "enode://pubkey3@ip3:port3",
+    "enode://pubkey4@ip4:port4"
 ]
 ```
 
