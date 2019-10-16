@@ -62,7 +62,7 @@ bootnodes=[
 ]
 ```
 
-Donde:
+Where:
 
 * **pubkey1, pubkey2, pubkey3 and pubkey4** correspond to the corresponding contents of the file `key.pub`in the `data` directory of each node in the `ebsi-core-net` directory.
 
