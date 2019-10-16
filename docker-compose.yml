@@ -8,9 +8,6 @@ services:
   besuplain:
     build: ./besuplain
     image: besuplain:latest
-#    volumes:
-#      - "./ebsi-core-net:/root/ebsi-core-net"
-#      - "./net-definitions:/root/net-definitions"
     container_name: besuplain
 
   besu:

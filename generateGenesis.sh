@@ -13,6 +13,6 @@ rm -rf net-definitions
 
 # Run the Besu binary with the subcommand 'operator' to generate the blockchain configuration
 docker-compose run -v `pwd`:`pwd` -w `pwd` besuplain operator generate-blockchain-config \
-  --config-file=./ebsi-core-net/ibftConfigFile.json \
+  --config-file=./ibftConfigFile.json \
   --to=./net-definitions \
   --private-key-file-name=key
