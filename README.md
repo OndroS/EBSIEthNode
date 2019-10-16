@@ -2,13 +2,13 @@
 
 A jumpstart implementation of the EBSI node infrastructure for Hyperledger Besu.
 
-## Bootstrappint the network
+## Bootstrapping the network
 
 In order to create the artifacts needed for a core network with 4 Consensus nodes, follow these steps:
 
 ### 1. Modify the configuration file in ./ebsi-core-net
 
-The file [./ebsi-core-net/ibftConfigFile](./ebsi-core-net/ibftConfigFile) contains the definitions to generate a genesis.json file and a number of starting Consensus nodes. You can look at the file and modify it accordingly.
+The file [./ebsi-core-net/ibftConfigFile.json](./ebsi-core-net/ibftConfigFile.json) contains the definitions to generate a genesis.json file and a number of starting Consensus nodes. You can look at the file and modify it accordingly.
 
 ### 2. Create the Genesis File and the public/private keys for each node
 
